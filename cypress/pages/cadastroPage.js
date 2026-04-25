@@ -23,6 +23,7 @@ class CadastroPage {
         cy.get(this.SelectorList().confirmPassword).type(confirmPassword);
         cy.get(this.SelectorList().botaoSubmit).click();
         cy.location('pathname').should('eq', '/signup');
+
     }
 
     cadastroFail() {
