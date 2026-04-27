@@ -1,8 +1,9 @@
 import LoginPage from "../pages/loginPage";
-import TransactionsPage from "../pages/transactionsPage";
+import NewTransactionsPage from "../pages/newTransactionsPage";
+
 
 const login = new LoginPage;
-const transaction = new TransactionsPage;
+const transaction = new NewTransactionsPage;
 
 
 beforeEach(() => cy.visit('http://localhost:3000'));

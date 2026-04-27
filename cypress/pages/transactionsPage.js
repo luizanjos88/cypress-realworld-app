@@ -1,41 +1,37 @@
 class TransactionsPage {
     selectorList() {
         const selectors = {
-            botaoNewTransaction: '[data-test="nav-top-new-transaction"]',
-            destinatary: '[data-test="user-list-item-GjWovtg2hr"]',
-            amountTransferInput: '[name="amount"]',
-            obsTransferInput: '[data-test="transaction-create-form"]',
-            submitButton: '[data-test="transaction-create-submit-payment"]',
-            alertSucess: '[data-test="alert-bar-success"]',
-            botaoHome: '[data-test="sidenav-home"]',
-            botaoPersonal: '[data-test="nav-personal-tab"]',
-            listaTransacoes: '[data-test="transaction-list"]',
+            buttonNext: '[data-test="user-onboarding-next"]',
+            inputBankName: '#bankaccount-bankName-input',
+            inputRoutingNumber: '#bankaccount-routingNumber-input',
+            inputAccountNumber: '#bankaccount-accountNumber-input',
+            buttonSubmit: '[data-test="bankaccount-submit"]',
+            nextButton: '[data-test="user-onboarding-next"]',
+            mineButton: '[data-test="nav-personal-tab"]',
+            mensagemNoTransictions: '[data-test="empty-list-header"]',
+            listaTransaction: '[data-test="transaction-list"]',
+
         }
         return selectors
-    }
-    transcatioSucess(amount, obs) {
-        cy.get(this.selectorList().botaoNewTransaction).click();
-        cy.get(this.selectorList().destinatary).click();
-        cy.get(this.selectorList().amountTransferInput).type(amount);
-        cy.get(this.selectorList().obsTransferInput).type(obs);
-        cy.get(this.selectorList().submitButton).click();
-        cy.get(this.selectorList().alertSucess).should('be.visible');
-        cy.get(this.selectorList().alertSucess).contains('Transaction Submitted!');
-        //Verificar transação
-        cy.get(this.selectorList().botaoHome).click();
-        cy.get(this.selectorList().botaoPersonal).click();
-        //children busca os itens da lista de Transações e First pega o primeiro item
-        cy.get(this.selectorList().listaTransacoes).children().first().should('contain', obs).and('contain', amount);
-    }
 
-    transactionFail(amountMaiorQueSaldo, obs) {
-        cy.get(this.selectorList().botaoNewTransaction).click();
-        cy.get(this.selectorList().botaoNewTransaction).click();
-        cy.get(this.selectorList().destinatary).click();
-        cy.get(this.selectorList().amountTransferInput).type(amountMaiorQueSaldo);
-        cy.get(this.selectorList().obsTransferInput).type(obs);
-        cy.get(this.selectorList().submitButton).click();
 
     }
+    countTranstionWithSucess(bankName, routingNumber, accountNumber) {
+        cy.get(this.selectorList().mineButton).click();
+        cy.get(this.selectorList().listaTransaction).should('have.length.greaterThan', 0);
+    }
+
+    countNoTransictions(bankName, routingNumber, accountNumber) {
+        cy.get(this.selectorList().buttonNext).click();
+        cy.get(this.selectorList().inputBankName).type(bankName);
+        cy.get(this.selectorList().inputRoutingNumber).type(routingNumber);
+        cy.get(this.selectorList().inputAccountNumber).type(accountNumber);
+        cy.get(this.selectorList().buttonSubmit).click();
+        cy.get(this.selectorList().nextButton).click();
+        cy.get(this.selectorList().mineButton).click();
+        cy.get(this.selectorList().mensagemNoTransictions).should('have.text', 'No Transactions');
+    }
+
 }
+
 export default TransactionsPage
