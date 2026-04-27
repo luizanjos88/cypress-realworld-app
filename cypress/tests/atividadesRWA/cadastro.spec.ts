@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import CadastroPage from "../pages/cadastroPage";
+import CadastroPage from "../../pages/cadastroPage";
 
 const cadastro = new CadastroPage
 

@@ -1,6 +1,4 @@
-import { data } from "cypress/types/jquery";
-import LoginPage from '../pages/loginPage';
-import { faker } from '@faker-js/faker';
+import LoginPage from '../../pages/loginPage';
 
 const login = new LoginPage
 

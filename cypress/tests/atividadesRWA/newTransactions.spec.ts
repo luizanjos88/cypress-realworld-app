@@ -1,5 +1,5 @@
-import LoginPage from "../pages/loginPage";
-import NewTransactionsPage from "../pages/newTransactionsPage";
+import LoginPage from "../../pages/loginPage";
+import NewTransactionsPage from "../../pages/newTransactionsPage";
 
 
 const login = new LoginPage;

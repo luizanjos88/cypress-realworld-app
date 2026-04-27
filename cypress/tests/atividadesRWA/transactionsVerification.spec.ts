@@ -1,6 +1,6 @@
-import CadastroPage from "../pages/cadastroPage";
-import LoginPage from "../pages/loginPage";
-import TransactionsPage from "../pages/transactionsPage";
+import LoginPage from "../../pages/loginPage";
+import TransactionsPage from "../../pages/transactionsPage";
+import CadastroPage from "../../pages/cadastroPage";
 import { faker } from "@faker-js/faker";
 const Chance = require('chance');
 const chance = new Chance();
@@ -20,7 +20,7 @@ const numero = chance.integer({ min: 100000000, max: 999999999 });
 beforeEach(() => { cy.visit('http://localhost:3000') })
 
 
-describe.only('Visualizar histórico de transações com sucesso', () => {
+describe('Visualizar histórico de transações com sucesso', () => {
     it('Deve exibir o histórico de transações de um usuário corretamente', () => {
         login.loginSucess('Heath93', 's3cret', 'Public');
         transctions.countTranstionWithSucess();
